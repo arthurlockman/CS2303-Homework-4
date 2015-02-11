@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "struct.h"
+#include <errno.h>
 
 int main()
 {
@@ -22,6 +23,11 @@ int main()
     // Output the employees to a file.
     printf("About to write to file.\n");
     FILE *outfile = fopen("stest.txt", "w"); // Open or create file for writing
+    if (outfile == NULL)
+    {
+        printf("Error in stest: %d (%s)\n", errno, strerror(errno));
+        return 1;
+    }
     outputEmployee(outfile, &harry);
     outputEmployee(outfile, &bluejay);
     fclose(outfile); // Close the file
