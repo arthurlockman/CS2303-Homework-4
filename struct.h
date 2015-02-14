@@ -20,5 +20,8 @@ void outputEmployee(FILE *stream, Employee *employee);
 Employee* make_employee(int salary, char* emp_name, char* department);
 Employee* prompt_for_employee();
 void free_employee(Employee* emp);
+void outputEmployeeRaw(FILE *stream, Employee *employee);
+Employee* read_employee(FILE *stream);
 
 #endif
+

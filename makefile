@@ -1,4 +1,4 @@
-all: stest employee_engine
+all: stest employee_engine employee_read_file
 
 debug: stestdebug
 
@@ -19,6 +19,12 @@ employee_engine: struct.o employee_engine.o
 
 employee_engine.o: employee_engine.c struct.h
 	gcc -g -c employee_engine.c -o employee_engine.o
+
+employee_read_file: struct.o employee_read_file.o
+	gcc -g employee_read_file.o struct.o -lreadline -o employee_read_file
+
+employee_read_file.o: employee_read_file.c struct.h
+	gcc -g -c employee_read_file.c -o employee_read_file.o
 
 struct.o: struct.c struct.h
 	gcc -g -c struct.c -o struct.o

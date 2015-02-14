@@ -20,6 +20,18 @@ void outputEmployee(FILE *stream, Employee *employee)
             employee->name, employee->salary, employee->department);
 }
 
+/** Prints the contents of an Employee struct to a stream,
+ * such as an already-opened file. This output is unformatted, meaning
+ * it doesn't contain any names for data fields, just the raw data.
+ * @param stream A pointer to a FILE struct representing an already-open
+ *     stream, such as stdout, stderr, or a file.
+ * @param employee Pointer to the Employee struct to print
+ */
+void outputEmployeeRaw(FILE *stream, Employee *employee)
+{
+    fprintf(stream, "%s %d %s\n",
+            employee->name, employee->salary, employee->department);
+}
 /**
  * @brief Creates an employee struct and fills it with provided data.
  *
@@ -117,5 +129,34 @@ void free_employee(Employee* emp)
     free(emp->name);
     free(emp->department);
     free(emp);
+}
+
+/**
+ * @brief Reads an employee from a text file in the
+ * format written by outputEmployeeRaw.
+ *
+ * @param stream The file stream to read from.
+ *
+ * @return An employee struct, created from the text file.
+ */
+Employee* read_employee(FILE *stream)
+{
+    char*  line = NULL;
+    size_t len = 0;
+    size_t readsize;
+    char*  emp_name = (char*)malloc(sizeof(char) * 100);
+    char*  emp_department = (char*)malloc(sizeof(char) * 100);
+    int    emp_salary;
+    if ((readsize = getline(&line, &len, stream)) != -1)
+    {
+        sscanf(line, "%s %d %s", emp_name, &emp_salary, emp_department);
+        return make_employee(emp_salary, emp_name, emp_department);
+    }
+    else
+    {
+        printf("No line.\n");
+        return NULL;
+    }
+    if (line) free(line);
 }
 
