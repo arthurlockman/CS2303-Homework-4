@@ -19,5 +19,6 @@ void printEmployee(Employee *employee);
 void outputEmployee(FILE *stream, Employee *employee);
 Employee* make_employee(int salary, char* emp_name, char* department);
 Employee* prompt_for_employee();
+void free_employee(Employee* emp);
 
 #endif

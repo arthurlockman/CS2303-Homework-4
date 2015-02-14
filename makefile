@@ -1,4 +1,4 @@
-all: stest
+all: stest employee_engine
 
 debug: stestdebug
 
@@ -13,6 +13,12 @@ stestdebug: stestdebug.o struct.o
 
 stestdebug.o: stest.c struct.h 
 	gcc -g -c stest.c -o stestdebug.o -DDEBUG
+
+employee_engine: struct.o employee_engine.o
+	gcc -g struct.o employee_engine.o -lreadline -o employee_engine
+
+employee_engine.o: employee_engine.c struct.h
+	gcc -g -c employee_engine.c -o employee_engine.o
 
 struct.o: struct.c struct.h
 	gcc -g -c struct.c -o struct.o

@@ -38,9 +38,9 @@ Employee* make_employee(int salary, char* emp_name, char* department)
     return emp;
 }
 
-/** 
+/**
  * @brief Create an employee based on user input.
- * 
+ *
  * @return A pointer to the newly created employee.
  */
 Employee* prompt_for_employee()
@@ -105,5 +105,17 @@ Employee* prompt_for_employee()
     emp->department = strdup(emp_department);
     emp->salary = emp_salary;
     return emp;
+}
+
+/**
+ * @brief Free an employee struct.
+ *
+ * @param emp The struct to free.
+ */
+void free_employee(Employee* emp)
+{
+    free(emp->name);
+    free(emp->department);
+    free(emp);
 }
 
