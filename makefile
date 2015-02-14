@@ -2,17 +2,20 @@ all: stest
 
 debug: stestdebug
 
-stest: stest.o
-	gcc -g stest.o -o stest
+stest: stest.o struct.o
+	gcc -g stest.o struct.o -o stest
 
 stest.o: stest.c struct.h
 	gcc -g -c stest.c
 
-stestdebug: stestdebug.o
-	gcc -g stestdebug.o -o stestdebug
+stestdebug: stestdebug.o struct.o
+	gcc -g stestdebug.o struct.o -o stestdebug
 
-stestdebug.o: stest.c struct.h
+stestdebug.o: stest.c struct.h 
 	gcc -g -c stest.c -o stestdebug.o -DDEBUG
+
+struct.o: struct.c struct.h
+	gcc -g -c struct.c -o struct.o
 
 clean:
 	rm -f *.o stest stestebug
