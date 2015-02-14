@@ -7,6 +7,12 @@ int main()
 {
     FILE *outfile = fopen("employee_output.txt", "r"); //Open file for reading
     
+    if (outfile == NULL)
+    {
+        printf("Error in employee_read_file: %d (%s)\n", errno, strerror(errno));
+        return 1;
+    }
+
     //Count number of lines in output file.
     int ch;
     int lines;
