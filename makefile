@@ -3,13 +3,13 @@ all: stest
 debug: stestdebug
 
 stest: stest.o struct.o
-	gcc -g stest.o struct.o -o stest
+	gcc -g stest.o struct.o -lreadline -o stest
 
 stest.o: stest.c struct.h
 	gcc -g -c stest.c
 
 stestdebug: stestdebug.o struct.o
-	gcc -g stestdebug.o struct.o -o stestdebug
+	gcc -g stestdebug.o struct.o -lreadline -o stestdebug
 
 stestdebug.o: stest.c struct.h 
 	gcc -g -c stest.c -o stestdebug.o -DDEBUG

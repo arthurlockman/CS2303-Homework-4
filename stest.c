@@ -20,12 +20,14 @@ int main()
     
     Employee* fry = make_employee(1000, "Fry", "Shipping");
     Employee* leela = make_employee(500000, "Leela", "Receiving");
+    Employee* input_emp = prompt_for_employee();
 
     // Output the employees to stdout.
     printEmployee(&harry);
     printEmployee(&bluejay);
     printEmployee(fry);
     printEmployee(leela);
+    printEmployee(input_emp);
 
     // Output the employees to a file.
     printf("About to write to file.\n");
@@ -39,6 +41,8 @@ int main()
     outputEmployee(outfile, &bluejay);
     outputEmployee(outfile, fry);
     outputEmployee(outfile, leela);
+    outputEmployee(outfile, input_emp);
+
     fclose(outfile); // Close the file
 
     printf("Ending program stest.\n");
