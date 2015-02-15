@@ -36,7 +36,7 @@ struct.o: struct.c struct.h
 	gcc -g -c struct.c -o struct.o
 
 clean:
-	rm -f *.o stest stestebug employee_read_file employee_write_text
+	rm -f *.o stest stestdebug employee_read_file employee_write_text employee_write_binary employee_read_binary employee_output.txt employee_output.dat
 
 docs:
 	doxygen
