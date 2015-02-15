@@ -37,3 +37,4 @@ employee_write_binary
 employee_read_binary
 employee_write_text
 *.dat
+stest.txt

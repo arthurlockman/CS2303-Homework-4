@@ -1,4 +1,0 @@
-Employee. Name = Harry Palmer, Salary = 5000, Department = Engineering
-Employee. Name = Erik Grantby, Salary = 10000, Department = Marketing
-Employee. Name = Fry, Salary = 1000, Department = Shipping
-Employee. Name = Leela, Salary = 500000, Department = Receiving
