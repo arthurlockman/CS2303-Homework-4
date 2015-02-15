@@ -3,6 +3,16 @@
 #include "struct.h"
 #include <errno.h>
 
+/**
+ * @brief This program writes some input employees to a 
+ * text file that can then be read by employee_read_file.
+ * 
+ * It writes the employees one per line with the following
+ * format for each line:
+ * [employee name] [employee salary] [employee department]
+ * 
+ * @return 1 if file error, 0 otherwise.
+ */
 int main()
 {
     int cont = 1;
