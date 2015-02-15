@@ -1,4 +1,4 @@
-all: stest employee_write_text employee_read_file employee_write_binary 
+all: stest employee_write_text employee_read_file employee_write_binary employee_read_binary
 
 debug: stestdebug
 
@@ -13,6 +13,12 @@ stestdebug: stestdebug.o struct.o
 
 stestdebug.o: stest.c struct.h 
 	gcc -g -c stest.c -o stestdebug.o -DDEBUG
+
+employee_read_binary: struct.o employee_read_binary.o
+	gcc -g -lreadline struct.o employee_read_binary.o -o employee_read_binary
+
+employee_read_binary.o: employee_read_binary.c struct.h
+	gcc -g -c employee_read_binary.c -o employee_read_binary.o
 
 employee_write_binary: struct.o employee_write_binary.o
 	gcc -g -lreadline struct.o employee_write_binary.o -o employee_write_binary

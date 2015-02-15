@@ -193,7 +193,6 @@ Employee* read_employee_binary(FILE *stream)
     fread(&emp_salary, sizeof(int), 1, stream);
     size_t emp_name_len;
     fread(&emp_name_len, sizeof(size_t), 1, stream);
-    printf("%lu\n", emp_name_len);
     char* emp_name = (char*)malloc(emp_name_len + 1);
     emp_name[emp_name_len] = '\0';
     fread(emp_name, emp_name_len, 1, stream);

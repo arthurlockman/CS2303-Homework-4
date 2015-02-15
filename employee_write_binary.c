@@ -28,7 +28,8 @@ int main()
         printf("Error in employee_write_binary: %d (%s)\n", errno, strerror(errno));
         return 1;
     }
-
+    
+    fwrite(&num_employees, sizeof(int), 1, outfile);
     for (i = 0; i < num_employees; i++)
     {
         printEmployee(emp_array[i]);
