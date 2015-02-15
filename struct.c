@@ -36,7 +36,7 @@ void outputEmployeeRaw(FILE *stream, Employee *employee)
  * @brief Creates an employee struct and fills it with provided data.
  *
  * @param salary The employee's salary.
- * @param name The employee's name.
+ * @param emp_name The employee's name.
  * @param department The employee's department.
  *
  * @return A pointer to the newly-created employee.
