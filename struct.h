@@ -13,6 +13,12 @@ typedef struct
     char *department;
 } Employee;
 
+typedef struct
+{
+    int salary;
+    char name[100];
+    char department[100];
+} EmployeeBin;
 
 // function prototypes
 void printEmployee(Employee *employee);
@@ -22,6 +28,9 @@ Employee* prompt_for_employee();
 void free_employee(Employee* emp);
 void outputEmployeeRaw(FILE *stream, Employee *employee);
 Employee* read_employee(FILE *stream);
+void outputEmployeeBinary(FILE *stream, Employee *employee);
+Employee* read_employee_binary(FILE *stream);
+char* str_padleft(const char* str, char pad, size_t bytes);
 
 #endif
 

@@ -72,7 +72,7 @@ Employee* prompt_for_employee()
             state = 1;
             break;
         case 1:
-            if (sscanf(line, "%s", emp_name)) state = 2;
+            if (sscanf(line, "%1000[0-9a-zA-Z ]s", emp_name)) state = 2;
             else
             {
                 state = 0;
@@ -86,7 +86,7 @@ Employee* prompt_for_employee()
             state = 3;
             break;
         case 3:
-            if (sscanf(line, "%s", emp_department)) state = 4;
+            if (sscanf(line, "%1000[0-9a-zA-Z ]s", emp_department)) state = 4;
             else
             {
                 state = 2;
@@ -158,5 +158,75 @@ Employee* read_employee(FILE *stream)
         return NULL;
     }
     if (line) free(line);
+}
+
+/**
+ * @brief Writes an employee struct to a binary file
+ * This file stream must be opened in binary mode.
+ *
+ * @param stream The output file steam.
+ * @param employee The employee to write.
+ */
+void outputEmployeeBinary(FILE *stream, Employee *employee)
+{
+    size_t str_length;
+    fwrite(&(employee->salary), sizeof(int), 1, stream);
+    str_length = strlen(employee->name);
+    fwrite(&str_length, sizeof(size_t), 1, stream);
+    fwrite(employee->name, strlen(employee->name), 1, stream);
+    str_length = strlen(employee->department);
+    fwrite(&str_length, sizeof(size_t), 1, stream);
+    fwrite(employee->department, strlen(employee->department), 1, stream);
+}
+
+/**
+ * @brief Reads one employee in from a binary file.
+ * The file stream must be opened in binary mode.
+ *
+ * @param stream The stream to read from.
+ *
+ * @return A pointer to the newly created employee.
+ */
+Employee* read_employee_binary(FILE *stream)
+{
+    int emp_salary;
+    fread(&emp_salary, sizeof(int), 1, stream);
+    size_t emp_name_len;
+    fread(&emp_name_len, sizeof(size_t), 1, stream);
+    printf("%lu\n", emp_name_len);
+    char* emp_name = (char*)malloc(emp_name_len + 1);
+    emp_name[emp_name_len] = '\0';
+    fread(emp_name, emp_name_len, 1, stream);
+    size_t emp_dept_len;
+    fread(&emp_dept_len, sizeof(size_t), 1, stream);
+    char* emp_dept = (char*)malloc(emp_dept_len + 1);
+    emp_dept[emp_dept_len] = '\0';
+    fread(emp_dept, emp_dept_len, 1, stream);
+    Employee* emp = (Employee*)malloc(sizeof(Employee));
+    emp->salary = emp_salary;
+    emp->department = strdup(emp_dept);
+    emp->name = strdup(emp_name);
+    return emp;
+}
+
+/**
+ * @brief Pad a string with the specified padding character.
+ *
+ * @param str The destination string.
+ * @param pad The padding character.
+ * @param bytes The number of bytes to pad to.
+ *
+ * @return the padded string.
+ */
+char* str_padleft(const char* str, char pad, size_t bytes)
+{
+    size_t size = strlen(str);
+    size_t bits = bytes * 8;
+    char* padded_str = (char*)malloc(bits + 1);
+    padded_str[bits] = 'X';
+    memset(padded_str, pad, bits);
+    strcpy(padded_str + bits - size, str);
+    printf("%s", padded_str);
+    return padded_str;
 }
 

@@ -33,3 +33,6 @@ stest
 employee_engine
 employee_output.txt
 employee_read_file
+employee_write_binary
+employee_read_binary
+*.dat

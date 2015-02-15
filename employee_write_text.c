@@ -26,7 +26,7 @@ int main()
     FILE *outfile = fopen("employee_output.txt", "w"); // Open or create file for writing
     if (outfile == NULL)
     {
-        printf("Error in stest: %d (%s)\n", errno, strerror(errno));
+        printf("Error in employee_write_text: %d (%s)\n", errno, strerror(errno));
         return 1;
     }
 

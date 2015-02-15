@@ -1,4 +1,4 @@
-all: stest employee_engine employee_read_file
+all: stest employee_write_text employee_read_file employee_write_binary 
 
 debug: stestdebug
 
@@ -14,11 +14,17 @@ stestdebug: stestdebug.o struct.o
 stestdebug.o: stest.c struct.h 
 	gcc -g -c stest.c -o stestdebug.o -DDEBUG
 
-employee_engine: struct.o employee_engine.o
-	gcc -g struct.o employee_engine.o -lreadline -o employee_engine
+employee_write_binary: struct.o employee_write_binary.o
+	gcc -g struct.o employee_write_binary.o -lreadline -o employee_write_binary
 
-employee_engine.o: employee_engine.c struct.h
-	gcc -g -c employee_engine.c -o employee_engine.o
+employee_write_binary.o: employee_write_binary.c struct.h
+	gcc -g -c employee_write_binary.c -o employee_write_binary.o
+
+employee_write_text: struct.o employee_write_text.o
+	gcc -g struct.o employee_write_text.o -lreadline -o employee_write_text
+
+employee_write_text.o: employee_write_text.c struct.h
+	gcc -g -c employee_write_text.c -o employee_write_text.o
 
 employee_read_file: struct.o employee_read_file.o
 	gcc -g employee_read_file.o struct.o -lreadline -o employee_read_file
@@ -30,7 +36,7 @@ struct.o: struct.c struct.h
 	gcc -g -c struct.c -o struct.o
 
 clean:
-	rm -f *.o stest stestebug
+	rm -f *.o stest stestebug employee_read_file employee_write_text
 
 docs:
 	doxygen
