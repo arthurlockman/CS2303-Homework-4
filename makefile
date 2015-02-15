@@ -15,19 +15,19 @@ stestdebug.o: stest.c struct.h
 	gcc -g -c stest.c -o stestdebug.o -DDEBUG
 
 employee_write_binary: struct.o employee_write_binary.o
-	gcc -g struct.o employee_write_binary.o -lreadline -o employee_write_binary
+	gcc -g -lreadline struct.o employee_write_binary.o -o employee_write_binary
 
 employee_write_binary.o: employee_write_binary.c struct.h
 	gcc -g -c employee_write_binary.c -o employee_write_binary.o
 
 employee_write_text: struct.o employee_write_text.o
-	gcc -g struct.o employee_write_text.o -lreadline -o employee_write_text
+	gcc -g -lreadline struct.o employee_write_text.o -o employee_write_text
 
 employee_write_text.o: employee_write_text.c struct.h
 	gcc -g -c employee_write_text.c -o employee_write_text.o
 
 employee_read_file: struct.o employee_read_file.o
-	gcc -g employee_read_file.o struct.o -lreadline -o employee_read_file
+	gcc -g -lreadline employee_read_file.o struct.o -o employee_read_file
 
 employee_read_file.o: employee_read_file.c struct.h
 	gcc -g -c employee_read_file.c -o employee_read_file.o

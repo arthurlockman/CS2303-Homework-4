@@ -209,24 +209,3 @@ Employee* read_employee_binary(FILE *stream)
     return emp;
 }
 
-/**
- * @brief Pad a string with the specified padding character.
- *
- * @param str The destination string.
- * @param pad The padding character.
- * @param bytes The number of bytes to pad to.
- *
- * @return the padded string.
- */
-char* str_padleft(const char* str, char pad, size_t bytes)
-{
-    size_t size = strlen(str);
-    size_t bits = bytes * 8;
-    char* padded_str = (char*)malloc(bits + 1);
-    padded_str[bits] = 'X';
-    memset(padded_str, pad, bits);
-    strcpy(padded_str + bits - size, str);
-    printf("%s", padded_str);
-    return padded_str;
-}
-
