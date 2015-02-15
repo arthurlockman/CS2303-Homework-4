@@ -3,6 +3,12 @@
 #include "struct.h"
 #include <errno.h>
 
+/** 
+ * @brief Read in employees from a text file created by 
+ * employee_write_text.
+ * 
+ * @return 1 if file failure, otherwise 0.
+ */
 int main()
 {
     FILE *outfile = fopen("employee_output.txt", "r"); //Open file for reading

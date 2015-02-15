@@ -3,6 +3,13 @@
 #include "struct.h"
 #include <errno.h>
 
+/** 
+ * @brief Reads a number of employees from a binary file created by 
+ * employee_write_binary. Assumes the format written by that program.
+ * If the format differs, the program will not work as intended.
+ * 
+ * @return 1 if file failure, otherwise 0.
+ */
 int main()
 {
     FILE *infile = fopen("employee_output.dat", "rb");

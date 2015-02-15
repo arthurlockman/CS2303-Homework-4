@@ -3,6 +3,21 @@
 #include "struct.h"
 #include <errno.h>
 
+/** 
+ * @brief Writes a binary file containing input employees. This file
+ * has the following format:
+ *
+ * first 16 bits: number of employees in file
+ * next 16 bits: employee 1's salary
+ * next 16 bits: number of characters in employee name
+ * next n bits: employee name
+ * next 16 bits: number of characters in employee department
+ * next n bits: employee department
+ * 
+ * This pattern repeats for as many employees as specified in the first block.
+ * 
+ * @return 
+ */
 int main()
 {
     int cont = 1;

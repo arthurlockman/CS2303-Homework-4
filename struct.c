@@ -1,6 +1,8 @@
 #include "struct.h"
 
-/** Prints the contents of an Employee struct to standard output.
+/**
+ * @brief Prints the contents of an Employee struct to standard output.
+ *
  * @param employee Pointer to the Employee struct to print
  */
 void printEmployee(Employee *employee)
@@ -8,8 +10,10 @@ void printEmployee(Employee *employee)
     outputEmployee(stdout, employee);
 }
 
-/** Prints the contents of an Employee struct to a stream,
+/**
+ * @brief Prints the contents of an Employee struct to a stream,
  * such as an already-opened file.
+ *
  * @param stream A pointer to a FILE struct representing an already-open
  *     stream, such as stdout, stderr, or a file.
  * @param employee Pointer to the Employee struct to print
@@ -20,9 +24,11 @@ void outputEmployee(FILE *stream, Employee *employee)
             employee->name, employee->salary, employee->department);
 }
 
-/** Prints the contents of an Employee struct to a stream,
+/**
+ * @brief Prints the contents of an Employee struct to a stream,
  * such as an already-opened file. This output is unformatted, meaning
  * it doesn't contain any names for data fields, just the raw data.
+ *
  * @param stream A pointer to a FILE struct representing an already-open
  *     stream, such as stdout, stderr, or a file.
  * @param employee Pointer to the Employee struct to print
