@@ -13,13 +13,6 @@ typedef struct
     char *department;
 } Employee;
 
-typedef struct
-{
-    int salary;
-    char name[100];
-    char department[100];
-} EmployeeBin;
-
 // function prototypes
 void printEmployee(Employee *employee);
 void outputEmployee(FILE *stream, Employee *employee);
