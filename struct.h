@@ -23,7 +23,7 @@ void free_employee(Employee* emp);
 void outputEmployeeRaw(FILE *stream, Employee *employee);
 Employee* read_employee(FILE *stream);
 void outputEmployeeBinary(int stream, Employee *employee);
-Employee* read_employee_binary(FILE *stream);
+Employee* read_employee_binary(int stream);
 char* str_padleft(const char* str, char pad, size_t bytes);
 
 #endif

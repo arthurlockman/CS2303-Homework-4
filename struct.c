@@ -197,20 +197,20 @@ void outputEmployeeBinary(int stream, Employee *employee)
  *
  * @return A pointer to the newly created employee.
  */
-Employee* read_employee_binary(FILE *stream)
+Employee* read_employee_binary(int stream)
 {
     int emp_salary;
-    fread(&emp_salary, sizeof(int), 1, stream);
+    read(stream, &emp_salary, sizeof(int));
     size_t emp_name_len;
-    fread(&emp_name_len, sizeof(size_t), 1, stream);
+    read(stream, &emp_name_len, sizeof(size_t));
     char* emp_name = (char*)malloc(emp_name_len + 1);
     emp_name[emp_name_len] = '\0';
-    fread(emp_name, emp_name_len, 1, stream);
+    read(stream, emp_name, emp_name_len);
     size_t emp_dept_len;
-    fread(&emp_dept_len, sizeof(size_t), 1, stream);
+    read(stream, &emp_dept_len, sizeof(size_t));
     char* emp_dept = (char*)malloc(emp_dept_len + 1);
     emp_dept[emp_dept_len] = '\0';
-    fread(emp_dept, emp_dept_len, 1, stream);
+    read(stream, emp_dept, emp_dept_len);
     Employee* emp = (Employee*)malloc(sizeof(Employee));
     emp->salary = emp_salary;
     emp->department = strdup(emp_dept);

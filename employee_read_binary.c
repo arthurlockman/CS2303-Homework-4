@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "struct.h"
 #include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 /** 
  * @brief Reads a number of employees from a binary file created by 
@@ -12,15 +16,14 @@
  */
 int main()
 {
-    FILE *infile = fopen("employee_output.dat", "rb");
-    if (infile == NULL)
+    int infile = open("employee_output.dat", O_RDONLY);
+    if (infile < 0)
     {
         printf("Error in employee_read_binary: %d (%s)\n", errno, strerror(errno));
         return 1;
     }
     int num_employees;
-    fread(&num_employees, sizeof(int), 1, infile);
-    
+    read(infile, &num_employees, sizeof(int)); 
     Employee** employees = (Employee**)malloc(num_employees * sizeof(Employee));
     int i;
     for (i = 0; i < num_employees; i++)
@@ -33,5 +36,5 @@ int main()
     {
         free_employee(employees[i]);
     }
-    fclose(infile);
+    close(infile);
 }
