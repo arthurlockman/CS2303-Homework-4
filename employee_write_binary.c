@@ -2,8 +2,12 @@
 #include <stdlib.h>
 #include "struct.h"
 #include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 
-/** 
+/**
  * @brief Writes a binary file containing input employees. This file
  * has the following format:
  *
@@ -13,10 +17,10 @@
  * next n bits: employee name
  * next 16 bits: number of characters in employee department
  * next n bits: employee department
- * 
+ *
  * This pattern repeats for as many employees as specified in the first block.
- * 
- * @return 
+ *
+ * @return
  */
 int main()
 {
@@ -37,21 +41,22 @@ int main()
     {
         emp_array[i] = prompt_for_employee();
     }
-    FILE *outfile = fopen("employee_output.dat", "wb");
-    if (outfile == NULL)
+    int outfile = open("employee_output.dat", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR |
+                       S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    if (outfile < 0)
     {
         printf("Error in employee_write_binary: %d (%s)\n", errno, strerror(errno));
         return 1;
     }
-    
-    fwrite(&num_employees, sizeof(int), 1, outfile);
+
+    write(outfile, &num_employees, sizeof(int));
     for (i = 0; i < num_employees; i++)
     {
         printEmployee(emp_array[i]);
         outputEmployeeBinary(outfile, emp_array[i]);
         free_employee(emp_array[i]);
     }
-    
-    fclose(outfile);
+
+    close(outfile);
 }
 

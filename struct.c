@@ -1,4 +1,8 @@
 #include "struct.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 /**
  * @brief Prints the contents of an Employee struct to standard output.
@@ -173,16 +177,16 @@ Employee* read_employee(FILE *stream)
  * @param stream The output file steam.
  * @param employee The employee to write.
  */
-void outputEmployeeBinary(FILE *stream, Employee *employee)
+void outputEmployeeBinary(int stream, Employee *employee)
 {
     size_t str_length;
-    fwrite(&(employee->salary), sizeof(int), 1, stream);
+    write(stream, &(employee->salary), sizeof(int)); 
     str_length = strlen(employee->name);
-    fwrite(&str_length, sizeof(size_t), 1, stream);
-    fwrite(employee->name, strlen(employee->name), 1, stream);
+    write(stream, &str_length, sizeof(size_t));
+    write(stream, employee->name, strlen(employee->name));
     str_length = strlen(employee->department);
-    fwrite(&str_length, sizeof(size_t), 1, stream);
-    fwrite(employee->department, strlen(employee->department), 1, stream);
+    write(stream, &str_length, sizeof(size_t));
+    write(stream, employee->department, strlen(employee->department));
 }
 
 /**
